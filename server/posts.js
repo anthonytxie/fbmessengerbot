@@ -1,22 +1,31 @@
-//create get started button
 
 
 
+// set greetings
 curl -X POST -H "Content-Type: application/json" -d '{
   "setting_type":"greeting",
   "greeting":{
     "text":"Hi {{user_first_name}}, welcome to this bot."
   }
-}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAACH5pouINQBAJ3mAtwvT54KZBuGsTHMG6DTyA4feCejTNixTiN2Ow07rQXsHTChMWBQs8j9LYqaVgZApGQL53utF5849BA1uM6ucav8huPodU99fBxz1bQ3U2pZAD5ZCxImPprEP9pgByR3MV5dSG6e8KoV0ZB52SAJ2r9BrzgZDZD"    
-
-//delete get started button
-curl -X DELETE -H "Content-Type: application/json" -d '{
-  "setting_type":"greeting"
-}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAACH5pouINQBAJ3mAtwvT54KZBuGsTHMG6DTyA4feCejTNixTiN2Ow07rQXsHTChMWBQs8j9LYqaVgZApGQL53utF5849BA1uM6ucav8huPodU99fBxz1bQ3U2pZAD5ZCxImPprEP9pgByR3MV5dSG6e8KoV0ZB52SAJ2r9BrzgZDZD"   
-    
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAACH5pouINQBANbCRlN4XCgcSa1wEEcdvGcIgZCrFjbBdVq9gGpZAHkg8FPDjZBuyVMxxLycu2ZChXVLJClAi2e86kGfSbpmcVEO3uVp2VUTaZBZB8frZC1lAooy4ds43xCQyivyZAoy9tvu7WDBc9ksTOXvATTDeBZCexwv4RO3UbAZDZD"    
 
 
-//persistent menu
+
+// get started button
+
+
+curl -X POST -H "Content-Type: application/json" -d '{ 
+  "get_started":{
+    "payload":"GET_STARTED_PAYLOAD"
+  }
+}' "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=EAACH5pouINQBANbCRlN4XCgcSa1wEEcdvGcIgZCrFjbBdVq9gGpZAHkg8FPDjZBuyVMxxLycu2ZChXVLJClAi2e86kGfSbpmcVEO3uVp2VUTaZBZB8frZC1lAooy4ds43xCQyivyZAoy9tvu7WDBc9ksTOXvATTDeBZCexwv4RO3UbAZDZD"  
+
+// get payload on get started button
+
+curl -X GET "https://graph.facebook.com/v2.6/me/messenger_profile?fields=get_started&access_token=PAGE_ACCESS_TOKEN=EAACH5pouINQBANbCRlN4XCgcSa1wEEcdvGcIgZCrFjbBdVq9gGpZAHkg8FPDjZBuyVMxxLycu2ZChXVLJClAi2e86kGfSbpmcVEO3uVp2VUTaZBZB8frZC1lAooy4ds43xCQyivyZAoy9tvu7WDBc9ksTOXvATTDeBZCexwv4RO3UbAZDZD"    
+
+// post persistent menu
+
 curl -X POST -H "Content-Type: application/json" -d '{
   "persistent_menu":[
     {
@@ -24,31 +33,35 @@ curl -X POST -H "Content-Type: application/json" -d '{
       "composer_input_disabled":true,
       "call_to_actions":[
         {
-          "title":"My Account",
+          "title":"Menu",
           "type":"nested",
           "call_to_actions":[
             {
-              "title":"Pay Bill",
+              "title":"Burger",
               "type":"postback",
-              "payload":"PAYBILL_PAYLOAD"
+              "payload":"menu-burger"
             },
             {
-              "title":"History",
+              "title":"Drinks",
               "type":"postback",
-              "payload":"HISTORY_PAYLOAD"
+              "payload":"menu-drinks"
             },
             {
-              "title":"Contact Info",
+              "title":"Sides",
               "type":"postback",
-              "payload":"CONTACT_INFO_PAYLOAD"
+              "payload":"menu-sides"
             }
           ]
         },
         {
-          "type":"web_url",
-          "title":"Latest News",
-          "url":"http://petershats.parseapp.com/hat-news",
-          "webview_height_ratio":"full"
+          "type":"postback",
+          "title":"Order",
+          "payload":"order",
+        },
+        {
+          "type":"postback",
+          "title":"Help",
+          "payload":"help",
         }
       ]
     },
@@ -57,8 +70,4 @@ curl -X POST -H "Content-Type: application/json" -d '{
       "composer_input_disabled":false
     }
   ]
-}' "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=YOUR_ACCESS_TOKEN_HERE"
-
-
-// can use this to send back payloads that are direct intents for API.AI
-    
+}' "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=EAACH5pouINQBANbCRlN4XCgcSa1wEEcdvGcIgZCrFjbBdVq9gGpZAHkg8FPDjZBuyVMxxLycu2ZChXVLJClAi2e86kGfSbpmcVEO3uVp2VUTaZBZB8frZC1lAooy4ds43xCQyivyZAoy9tvu7WDBc9ksTOXvATTDeBZCexwv4RO3UbAZDZD"

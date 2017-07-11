@@ -3,6 +3,9 @@ const routes = require('./routes');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const request = require('request');
+const { receivedMessage, receivedPostback} = require('./receive-functions')
+const { sendGenericMessage, sendTextMessage, callSendAPI } = require('./send-functions')
+
 
 const app = express();
 
@@ -39,19 +42,20 @@ app.post('/webhook', function (req, res) {
       var pageID = entry.id;
       var timeOfEvent = entry.time;
 
-      // Iterate over each messaging event
+      // Iterate over messaging array which contains objects... each object represents one interaction event
       entry.messaging.forEach(function(event) {
-        console.log(event)
-        // if (event.message) {
-        //   receivedMessage(event);
-        // } 
-        // else if (event.postback) {
-        //   receivedPostback(event);     
-        // }
+        // here we check to see what kind of attribute exists on event to see what kind of event it is 
+        if (event.message) {
+          receivedMessage(event);
+        } 
+        //postback events have a payload in event.postback
+        else if (event.postback) {
+          receivedPostback(event);     
+        }
 
-        // else {
-        //   console.log("Webhook received unknown event: ", event);
-        // }
+        else {
+          console.log("Webhook received unknown event: ", event);
+        }
       });
     });
 

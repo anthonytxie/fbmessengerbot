@@ -4,8 +4,7 @@ function receivedMessage(event) {
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
-  console.log("Received message for user %d and page %d at %d with message:", 
-    senderID, recipientID, timeOfMessage);
+  console.log(`Received message for ${senderID} and page ${recipientID} at ${timeOfMessage} with message:`);
   console.log(JSON.stringify(message));
 
   var messageId = message.mid;
@@ -46,6 +45,8 @@ function receivedPostback(event) {
   // let them know it was successful
   sendTextMessage(senderID, "Postback called");
 }
+
+module.exports = { receivedMessage, receivedPostback};
 
 
 
