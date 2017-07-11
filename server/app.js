@@ -23,4 +23,20 @@ app.get('/webhook', function(req, res) {
   }  
 });
 
+
+app.post('/webhook', function (req, res) {
+  var data = req.body;
+  console.log(data);
+});
+  
+function receivedMessage(event) {
+  // Putting a stub for now, we'll expand it in the following steps
+  console.log("Message data: ", event.message);
+}
+
+
+
+
+
+
 module.exports = app
