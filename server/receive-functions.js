@@ -1,4 +1,5 @@
 const { sendGenericMessage, sendTextMessage, callSendAPI } = require('./send-functions')
+const request = require('request');
 
 function receivedMessage(event) {
   var senderID = event.sender.id;
