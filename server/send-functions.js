@@ -1,3 +1,5 @@
+const request = require('request');
+
 function sendGenericMessage(recipientId) {
   var messageData = {
     recipient: {
