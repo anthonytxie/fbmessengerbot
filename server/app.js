@@ -26,7 +26,7 @@ app.get('/webhook', function(req, res) {
 
 app.post('/webhook', function (req, res) {
   var data = req.body.entry.messaging;
-  console.log(data);
+  console.log(JSON.stringify(data))
 });
   
 function receivedMessage(event) {
