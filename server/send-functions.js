@@ -67,17 +67,18 @@ function sendTextMessage(recipientId, messageText) {
 function callSendAPI(messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: 'EAACH5pouINQBAJPuNzZCbJsOg18p2jUZCedPv8iwbcgfbV3wpStt0ObdmRJQzd3QbZBCVwztvbOHCTDmQ9AhjEHGKJz89uNkH1oSnWYh93l3DCGeFpjvsaMk0BeZA172eSaZAGA6YvAEBb7JVtZBBbJtlMNjgnZAUdOFjFrtzdLXAZDZD'},
+    qs: { access_token: 'EAACH5pouINQBANbCRlN4XCgcSa1wEEcdvGcIgZCrFjbBdVq9gGpZAHkg8FPDjZBuyVMxxLycu2ZChXVLJClAi2e86kGfSbpmcVEO3uVp2VUTaZBZB8frZC1lAooy4ds43xCQyivyZAoy9tvu7WDBc9ksTOXvATTDeBZCexwv4RO3UbAZDZD' },
     method: 'POST',
     json: messageData
 
-  },(error, response, body) => {
+  }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       var recipientId = body.recipient_id;
       var messageId = body.message_id;
-      console.log(`Successfully sent message with ${messageId} to {recipientId}`);
-    } 
-    else {
+
+      console.log("Successfully sent generic message with id %s to recipient %s", 
+        messageId, recipientId);
+    } else {
       console.error("Unable to send message.");
       console.error(response);
       console.error(error);
